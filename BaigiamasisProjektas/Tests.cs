@@ -92,7 +92,8 @@ namespace BaigiamasisProjektas
             }
             card.AddToCart();
             card.GoToCart();
-            Thread.Sleep(3000); //wait for page to load
+            //Thread.Sleep(3000); //wait for page to load
+            general.CheckElementExistsByXpath("//h1[contains(text(), 'Krepšelis')]");
             cart.CompareNames(name);
             cart.ComparePrices(price);
 
