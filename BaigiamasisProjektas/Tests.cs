@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using System.Data;
+using System.Xml.Linq;
 
 
 namespace BaigiamasisProjektas
@@ -39,6 +40,7 @@ namespace BaigiamasisProjektas
             if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
                 general.TakeScreenshot();
+
             }
             //driver.Quit();
         }
