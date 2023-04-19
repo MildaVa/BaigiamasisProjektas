@@ -20,6 +20,7 @@ namespace BaigiamasisProjektas
     {
         static IWebDriver driver;
         GeneralMethods general;
+        MainPage main;
         [SetUp]
         public void SETUP()
         {
@@ -28,6 +29,7 @@ namespace BaigiamasisProjektas
             options.AddArguments("--disable-notifications"); // to disable notification
             driver = new ChromeDriver(options);
             general = new GeneralMethods(driver);
+            main = new MainPage(driver);
             driver.Manage().Window.Maximize();
             driver.Url = "https://eavalyne.lt/";
             general.ClickElement("//button[@class='button base-button primary normal green']");
@@ -46,10 +48,10 @@ namespace BaigiamasisProjektas
         }
 
         [Test]
-        public static void CheckPriceSorting()
+        public void CheckPriceSorting()
         {
 
-            MainPage main = new MainPage(driver);
+            //MainPage main = new MainPage(driver);
             ProductList product = new ProductList(driver);
 
             main.SearchByText("adidas");
@@ -64,7 +66,7 @@ namespace BaigiamasisProjektas
         [Test]
         public void CheckLogIn()
         {
-            MainPage main = new MainPage(driver);
+            //MainPage main = new MainPage(driver);
             LoginPage login = new LoginPage(driver);
 
             main.ClickLogInButton();
@@ -79,7 +81,7 @@ namespace BaigiamasisProjektas
         public void CheckCart()
         {
 
-            MainPage main = new MainPage(driver);
+            //MainPage main = new MainPage(driver);
             ProductList product = new ProductList(driver);
             ProductCard card = new ProductCard(driver);
             Cart cart = new Cart(driver);
