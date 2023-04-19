@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;
 using OpenQA.Selenium.Support.Extensions;
+using System.IO;
 
 namespace BaigiamasisProjektas
 {
@@ -98,11 +99,23 @@ namespace BaigiamasisProjektas
             }
             return lines[1];
         }
-        public void TakeScreenshot()
+        //public void TakeScreenshot()
+        //{
+        //    Screenshot ss = driver.TakeScreenshot();
+        //    string screenshot = "screenshot" + DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".jpg";
+        //    ss.SaveAsFile("C:\\Users\\Milda\\source\\repos\\BaigiamasisProjektas" + screenshot);
+        //}
+        public static void TakeScreenshot(IWebDriver driver, string fileName)
         {
-            Screenshot ss = driver.TakeScreenshot();
-            string screenshot = "screenshot" + DateTime.Now.ToString("yyyy-MM-dd-HH_mm_ss") + ".jpg";
-            ss.SaveAsFile("C:\\Users\\Milda\\source\\repos\\BaigiamasisProjektas" + screenshot);
+            var screenshotDriver = driver as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+            if (!Directory.Exists("Screenshots"))
+            {
+                Directory.CreateDirectory("Screenshots");
+            }
+            screenshot.SaveAsFile(
+                $"Screenshots\\{fileName}.png",
+                ScreenshotImageFormat.Png);
         }
     }
 }

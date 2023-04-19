@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//using OpenQA.Selenium.DevTools.V108.CSS;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 using System.Data;
 using System.Xml.Linq;
-
+using NUnit.Framework.Interfaces;
+using System.IO;
 
 namespace BaigiamasisProjektas
 {
@@ -39,10 +39,16 @@ namespace BaigiamasisProjektas
         [TearDown]
         public void TearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                general.TakeScreenshot();
-
+                var name =
+                    $"{TestContext.CurrentContext.Test.MethodName}" +
+                    $" Error at " +
+                    $"{DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH'_'mm'_'ss")}";
+                GeneralMethods.TakeScreenshot(driver, name);
+                File.WriteAllText(
+                    $"Screenshots\\{name}.txt",
+                    TestContext.CurrentContext.Result.Message);
             }
             //driver.Quit();
         }
@@ -50,23 +56,20 @@ namespace BaigiamasisProjektas
         [Test]
         public void CheckPriceSorting()
         {
-
-            //MainPage main = new MainPage(driver);
             ProductList product = new ProductList(driver);
 
             main.SearchByText("adidas");
             product.ChooseSorting("Žemiausia kaina");
-            Thread.Sleep(3000); //wait for sorted page to load
+            Thread.Sleep(3000); //wait for sorted page to load, no unique element in sorted page
             product.CheckListSortingAsc();
             product.ChooseSorting("Aukščiausia kaina");
-            Thread.Sleep(3000); //wait for sorted page to load
+            Thread.Sleep(3000); //wait for sorted page to load, , no unique element in sorted page
             product.CheckListSortingDesc();
 
         }
         [Test]
         public void CheckLogIn()
         {
-            //MainPage main = new MainPage(driver);
             LoginPage login = new LoginPage(driver);
 
             main.ClickLogInButton();
@@ -80,8 +83,6 @@ namespace BaigiamasisProjektas
         [Test]
         public void CheckCart()
         {
-
-            //MainPage main = new MainPage(driver);
             ProductList product = new ProductList(driver);
             ProductCard card = new ProductCard(driver);
             Cart cart = new Cart(driver);
