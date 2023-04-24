@@ -9,6 +9,7 @@ namespace BaigiamasisProjektas
 {
     internal class LoginPage
     {
+        // kintamasis nenaudojamas klaseje.
         IWebDriver driver;
         GeneralMethods generalMethods;
         public LoginPage(IWebDriver driver)
@@ -21,6 +22,7 @@ namespace BaigiamasisProjektas
         {
             generalMethods.EnterText("//input[@id='email']", generalMethods.GetEmail());
         }
+        //Puikus komentaras
         public void EnterEmail(string email) //overloadinu, kad butu variantu
         {
             generalMethods.EnterText("//input[@id='email']", email);
@@ -33,6 +35,8 @@ namespace BaigiamasisProjektas
         {
             generalMethods.ClickElement("(//button[@type='submit'])[2]");
         }
+        // Velgi noretusi arba grazinamo elemento ar true / false
+        // pagal pavadinimą metodo.
         public void CheckAccountExists()
         {
             generalMethods.CheckElementExistsByXpath("//span[contains(text(), 'Mano paskyra')]");

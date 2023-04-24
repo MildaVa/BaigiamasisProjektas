@@ -10,6 +10,7 @@ namespace BaigiamasisProjektas
 {
     internal class MainPage
     {
+        // Kintamasis nenaudojamas
         IWebDriver driver;
         GeneralMethods generalMethods;
         public MainPage(IWebDriver driver)

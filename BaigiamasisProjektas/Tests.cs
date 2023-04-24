@@ -50,6 +50,9 @@ namespace BaigiamasisProjektas
                     $"Screenshots\\{name}.txt",
                     TestContext.CurrentContext.Result.Message);
             }
+            // O kodel neuzdarom? :)
+            driver.Close();
+            driver.Quit();
             //driver.Quit();
         }
 
@@ -60,6 +63,7 @@ namespace BaigiamasisProjektas
 
             main.SearchByText("adidas");
             product.ChooseSorting("Žemiausia kaina");
+            // Good for now, reikia rasti sprendima ateiciai :)
             Thread.Sleep(3000); //wait for sorted page to load, no unique element in sorted page
             product.CheckListSortingAsc();
             product.ChooseSorting("Aukščiausia kaina");
@@ -97,6 +101,7 @@ namespace BaigiamasisProjektas
             }
             card.AddToCart();
             card.GoToCart();
+            // .. Komentarai parašyti prie funkcijos .. 
             general.CheckElementExistsByXpath("//h1[contains(text(), 'Krepšelis')]"); //wait for page to load
             cart.CompareNames(name);
             cart.ComparePrices(price);
