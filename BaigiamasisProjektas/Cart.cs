@@ -12,31 +12,29 @@ namespace BaigiamasisProjektas
     internal class Cart
     {
         IWebDriver driver;
-        GeneralMethods generalMethods;
-        ProductCard card;
-
+        
 
         public Cart(IWebDriver driver)
         {
             this.driver = driver;
-            generalMethods = new GeneralMethods(driver);
-            card = new ProductCard(driver);  
         }
 
         public void CompareNames(string name)
         {
             string cartname = driver.FindElement(By.XPath("//a[@class= 'name text-link']")).Text;
+            //aha, man irgi nepatinka, bet tais aidas (ar kitas brandas kitu atveju) vidury
+            //stringo, tai contains nelabai nori atpazint kad jie panasus:(:(
             cartname = cartname.Replace("adidas ", "");
             if (!cartname.Contains(name))
             {
-                Assert.Fail("different product names: " + cartname + " doesn not containt " + name);
+                Assert.Fail("different product names: " + cartname + " does not contain " + name);
             }
         }
 
         public void ComparePrices(string price)
         {
-            string cartprice = driver.FindElement(By.XPath("(//div[@class='price-final'])[1]")).Text;
-            Assert.AreEqual(cartprice, price);
+            string cartPrice = driver.FindElement(By.XPath("(//div[@class='price-final'])[1]")).Text;
+            Assert.AreEqual(cartPrice, price);
         }
 
 

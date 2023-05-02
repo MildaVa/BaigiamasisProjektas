@@ -10,11 +10,9 @@ namespace BaigiamasisProjektas
 {
     internal class MainPage
     {
-        IWebDriver driver;
         GeneralMethods generalMethods;
         public MainPage(IWebDriver driver)
         {
-            this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
        

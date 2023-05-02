@@ -35,7 +35,7 @@ namespace BaigiamasisProjektas
         }
         public void CheckAccountExists()
         {
-            generalMethods.CheckElementExistsByXpath("//span[contains(text(), 'Mano paskyra')]");
+            generalMethods.FindElementByXpath("//span[contains(text(), 'Mano paskyra')]");
         }
     }
 }

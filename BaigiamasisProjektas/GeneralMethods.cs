@@ -24,23 +24,34 @@ namespace BaigiamasisProjektas
             wait.PollingInterval = TimeSpan.FromMilliseconds(250);
             wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
         }
-        public void ClickElement(string xpath, string errorMessage)
+
+        public void ClickElement(string xpath, string errorMessage = "Cookie accept button was not found")
         {
-            wait.Message = "Cookie accept button was not found";
+            wait.Message = errorMessage;
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
             elm.Click();
         }
 
-        public void ClickElement(string xpath)
-        {
-            wait.Message = "Cookie accept button was not found";
-            IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
-            elm.Click();
-        }
+        //pasilikau uzsikomentavus sau, tai nekreipkit demesio
+        //public void ClickElement(string xpath, string errorMessage)
+        //{
+        //    wait.Message = "Cookie accept button was not found";
+        //    IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
+        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+        //    js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
+        //    elm.Click();
+        //}
+
+        //public void ClickElement(string xpath)
+        //{
+        //    wait.Message = "Cookie accept button was not found";
+        //    IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
+        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+        //    js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
+        //    elm.Click();
+        //}
 
         public void ClickElementJS(string xpath)
         {
@@ -65,7 +76,7 @@ namespace BaigiamasisProjektas
             return driver.FindElements(elements).Count();
         }
 
-        public void CheckElementExistsByXpath(string xpath)
+        public void FindElementByXpath(string xpath)
         {
             wait.Message = "Cookie accept button was not found";
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
@@ -73,30 +84,30 @@ namespace BaigiamasisProjektas
             js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
             //driver.FindElement(By.XPath(xpath));
         }
-        public void CheckElementExistsByID(string id)
+        public void FindElementById(string id)
         {
             driver.FindElement(By.Id(id));
         }
         public string GetEmail()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Milda\source\repos\paskaitos33\credentials.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"Credentials.txt");
 
-            foreach (string line in lines)
-            {
-                Console.WriteLine("\t" + line);
-            }
+            //foreach (string line in lines)
+            //{
+            //    Console.WriteLine("\t" + line);
+            //}
             return lines[0];
         }
 
         public string GetPassword()
         {
-            //string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Milda\source\repos\paskaitos33\credentials.txt");
+         
             string[] lines = System.IO.File.ReadAllLines(@"Credentials.txt");
 
-            foreach (string line in lines)
-            {
-                Console.WriteLine("\t" + line);
-            }
+            //foreach (string line in lines)
+            //{
+            //    Console.WriteLine("\t" + line);
+            //}
             return lines[1];
         }
         //public void TakeScreenshot()

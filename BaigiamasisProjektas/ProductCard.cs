@@ -24,13 +24,13 @@ namespace BaigiamasisProjektas
 
         public string GetName()
         {
-            generalMethods.CheckElementExistsByXpath("//h1//strong[contains(@class, 'product-name')]");
+            generalMethods.FindElementByXpath("//h1//strong[contains(@class, 'product-name')]");
             string name = driver.FindElement(By.XPath("//h1//strong[contains(@class, 'product-name')] ")).Text;
             
             return name;
         }
         public string GetPrice() {
-            generalMethods.CheckElementExistsByXpath("//div[@data-test-id='final-price']");
+            generalMethods.FindElementByXpath("//div[@data-test-id='final-price']");
             string price = driver.FindElement(By.XPath("//div[@data-test-id='final-price']")).Text;
             return price;
         }
