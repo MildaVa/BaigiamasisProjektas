@@ -41,7 +41,7 @@ namespace BaigiamasisProjektas
             for (int i = 2; i <= n+1; i++)
             {
                 string xpath = "(//button[contains(@class, 'size')])[" + i + "]";
-                  string text  = driver.FindElement(By.XPath(xpath)).Text;
+                  string text  = generalMethods.GetElement(By.XPath(xpath)).Text;
                 if (!text.Contains("Praneškite man"))
                 {
                     generalMethods.ClickElement(xpath);

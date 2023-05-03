@@ -34,7 +34,8 @@ namespace BaigiamasisProjektas
             elm.Click();
         }
 
-        //pasilikau uzsikomentavus sau, tai nekreipkit demesio
+        //pasilikau uzsikomentavus sau nenaudojamus metodus, tai nekreipkit demesio
+
         //public void ClickElement(string xpath, string errorMessage)
         //{
         //    wait.Message = "Cookie accept button was not found";
@@ -53,13 +54,13 @@ namespace BaigiamasisProjektas
         //    elm.Click();
         //}
 
-        public void ClickElementJS(string xpath)
-        {
-            IWebElement el = driver.FindElement(By.XPath(xpath));
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", el);
-            js.ExecuteScript("arguments[0].click();", el);
-        }
+        //public void ClickElementJS(string xpath)
+        //{
+        //    IWebElement el = driver.FindElement(By.XPath(xpath));
+        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+        //    js.ExecuteScript("arguments[0].scrollIntoView(true);", el);
+        //    js.ExecuteScript("arguments[0].click();", el);
+        //}
 
         public void EnterText(string xpath, string text)
         {
@@ -69,6 +70,7 @@ namespace BaigiamasisProjektas
             elm.SendKeys(text);
         }
 
+        public IWebElement GetElement(By by) => wait.Until(x => x.FindElement(by));
 
         public int GetElementsCountByXpath(string xpath)
         {
@@ -76,18 +78,19 @@ namespace BaigiamasisProjektas
             return driver.FindElements(elements).Count();
         }
 
-        public void FindElementByXpath(string xpath)
+        public bool FindElementByXpath(string xpath)
         {
             wait.Message = "Cookie accept button was not found";
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
+            return true;
             //driver.FindElement(By.XPath(xpath));
         }
-        public void FindElementById(string id)
-        {
-            driver.FindElement(By.Id(id));
-        }
+        //public void FindElementById(string id)
+        //{
+        //    driver.FindElement(By.Id(id));
+        //}
         public string GetEmail()
         {
             string[] lines = System.IO.File.ReadAllLines(@"Credentials.txt");

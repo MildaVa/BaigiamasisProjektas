@@ -24,9 +24,9 @@ namespace BaigiamasisProjektas
         public void ChooseSorting(string sortingtype)
         {
             generalMethods.ClickElement("//div[@class='dropdown sort-dropdown']");
-            generalMethods.ClickElement("//option[contains(text(), '"+ sortingtype +"')]");
+            generalMethods.ClickElement("//option[contains(text(), '" + sortingtype + "')]");
         }
-        public void CheckListSortingAsc()
+        public bool CheckListSortingAsc()
         {
             
             By products = By.XPath("//div[@class='price-final']");
@@ -39,18 +39,20 @@ namespace BaigiamasisProjektas
                 oneprice = oneprice.Substring(0, oneprice.Length - 2);
                 int onepriceint = int.Parse(oneprice);
                 prices.Add(onepriceint);
-                Console.WriteLine(oneprice);
+               // Console.WriteLine(oneprice);
             }
             for (int i = 0; i < prices.Count - 1; i++)
             {
                 if (prices[i] > prices[i + 1])
                 {
-                    Assert.Fail("blogas rikiavimas");
+                    return false;
+                    //Assert.Fail("blogas rikiavimas");
                 }
             }
+            return true;
         }
 
-        public void CheckListSortingDesc()
+        public bool CheckListSortingDesc()
         {
 
             By products = By.XPath("//div[@class='price-final']");
@@ -63,18 +65,20 @@ namespace BaigiamasisProjektas
                 oneprice = oneprice.Substring(0, oneprice.Length - 2);
                 int onepriceint = int.Parse(oneprice);
                 prices.Add(onepriceint);
-                Console.WriteLine(oneprice);
+               // Console.WriteLine(oneprice);
             }
             for (int i = 0; i < prices.Count - 1; i++)
             {
                 if (prices[i] < prices[i + 1])
                 {
-                    Assert.Fail("blogas rikiavimas");
+                    return false;
+                 //   Assert.Fail("blogas rikiavimas");
                 }
             }
+            return true;
         }
 
-      public void OpenProduct(int i = 1)
+        public void OpenProduct(int i = 1)
         {
             generalMethods.ClickElement($"(//div[@class='product-switcher product-image'])[{i}]");
         }

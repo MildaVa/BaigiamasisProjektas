@@ -50,7 +50,8 @@ namespace BaigiamasisProjektas
                     $"Screenshots\\{name}.txt",
                     TestContext.CurrentContext.Result.Message);
             }
-            //driver.Quit();
+            driver.Close();
+            driver.Quit();
         }
 
         [Test]
@@ -61,10 +62,10 @@ namespace BaigiamasisProjektas
             main.SearchByText("adidas");
             product.ChooseSorting("Žemiausia kaina");
             Thread.Sleep(3000); //wait for sorted page to load, no unique element in sorted page
-            product.CheckListSortingAsc();
+            Assert.IsTrue(product.CheckListSortingAsc());
             product.ChooseSorting("Aukščiausia kaina");
-            Thread.Sleep(3000); //wait for sorted page to load, , no unique element in sorted page
-            product.CheckListSortingDesc();
+            Thread.Sleep(3000); //wait for sorted page to load, no unique element in sorted page
+            Assert.IsTrue(product.CheckListSortingDesc());
 
         }
         [Test]
@@ -76,7 +77,7 @@ namespace BaigiamasisProjektas
             login.EnterEmail();
             login.EnterPassword();
             login.ClickLogin();
-            login.CheckAccountExists();
+            Assert.IsTrue(login.CheckAccountExists());
 
         }
 

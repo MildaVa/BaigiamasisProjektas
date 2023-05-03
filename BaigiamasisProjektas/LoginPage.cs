@@ -9,11 +9,9 @@ namespace BaigiamasisProjektas
 {
     internal class LoginPage
     {
-        IWebDriver driver;
         GeneralMethods generalMethods;
         public LoginPage(IWebDriver driver)
         {
-            this.driver = driver;
             generalMethods = new GeneralMethods(driver);
         }
 
@@ -33,9 +31,9 @@ namespace BaigiamasisProjektas
         {
             generalMethods.ClickElement("(//button[@type='submit'])[2]");
         }
-        public void CheckAccountExists()
+        public bool CheckAccountExists()
         {
-            generalMethods.FindElementByXpath("//span[contains(text(), 'Mano paskyra')]");
+           return generalMethods.FindElementByXpath("//span[contains(text(), 'Mano paskyra')]");
         }
     }
 }
