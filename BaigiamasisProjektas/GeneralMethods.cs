@@ -27,7 +27,7 @@ namespace BaigiamasisProjektas
 
         public void ClickElement(string xpath, string errorMessage = "Cookie accept button was not found")
         {
-            wait.Message = errorMessage;
+           // wait.Message = errorMessage;
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
@@ -35,24 +35,6 @@ namespace BaigiamasisProjektas
         }
 
         //pasilikau uzsikomentavus sau nenaudojamus metodus, tai nekreipkit demesio
-
-        //public void ClickElement(string xpath, string errorMessage)
-        //{
-        //    wait.Message = "Cookie accept button was not found";
-        //    IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
-        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-        //    js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
-        //    elm.Click();
-        //}
-
-        //public void ClickElement(string xpath)
-        //{
-        //    wait.Message = "Cookie accept button was not found";
-        //    IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
-        //    IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-        //    js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
-        //    elm.Click();
-        //}
 
         //public void ClickElementJS(string xpath)
         //{
