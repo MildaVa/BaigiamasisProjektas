@@ -78,7 +78,9 @@ namespace BaigiamasisProjektas
             return driver.FindElements(elements).Count();
         }
 
-        public bool FindElementByXpath(string xpath)
+        //As ji atvardinau atgal i originalu, man paciai aiskiau tad aka as veikiu
+        //dabar kai boolean gal taip labai nepykdys jusu:DD
+        public bool CheckElementExistsByXpath(string xpath)
         {
             wait.Message = "Cookie accept button was not found";
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
