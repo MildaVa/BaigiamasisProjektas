@@ -25,9 +25,9 @@ namespace BaigiamasisProjektas
             wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
         }
 
-        public void ClickElement(string xpath, string errorMessage = "Cookie accept button was not found")
+        public void ClickElement(string xpath, string errorMessage = "Element was not found")
         {
-           // wait.Message = errorMessage;
+            wait.Message = errorMessage;
             IWebElement elm = wait.Until(x => x.FindElement(By.XPath(xpath)));
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", elm);
